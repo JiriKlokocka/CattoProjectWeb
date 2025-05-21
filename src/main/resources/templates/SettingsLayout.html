@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/SettingsLayout.css">
+    <link rel="stylesheet" href="/MainLayout.css">
+    <title>Catto settings</title>
+    <!--Font Sour Gummy, Open Sans from Google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Prociono&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Prociono&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!--Fa Fa icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--favicon-->
+    <link rel="icon" type="image/x-icon" href="/images/FAVICON.png">
+    <script src="http://localhost:35730/livereload.js"></script>
+</head>
+<body>
+    <header>
+        <!--    HEADER FRAGMENT    -->
+        <div th:replace="~{fragments/header}"></div>
+    </header>
+
+    <main class="settings-main">
+        <div class="settings-container">
+            <div class="settings-menu">
+                <div class="settings-menu-item">Notifications</div>
+                <div class="settings-menu-item">Privacy</div>
+                <div class="settings-menu-item">Payments</div>
+                <div class="settings-menu-item">Account</div>
+                <div class="settings-menu-item">Premium options</div>
+            </div>
+            <div class="settings-content">
+                <div class="switch-box">
+                    <p class="switch-text-left" style="font-weight: 700;">All notifications</p>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                    
+                </div> 
+
+                <div class="switch-box">
+                    <p class="switch-text-left">Friends activity</p>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                    <p class="switch-text-right">Notify me when my friends share something</p>
+                </div>
+
+                <div class="switch-box">
+                    <p class="switch-text-left">Messages</p>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                    <p class="switch-text-right">Notify me about incoming messages</p>
+                </div>
+
+                <div class="switch-box">
+                    <p class="switch-text-left">Mentions</p>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                    <p class="switch-text-right">Notify me when I get mentioned</p>
+                </div>
+
+                <div class="switch-box">
+                    <p class="switch-text-left">Promotions</p>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                    <p class="switch-text-right">Notify me about sponsor promotions or offerings</p>
+                </div>
+
+                <div class="switch-box">
+                    <p class="switch-text-left">Policy updates</p>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                    <p class="switch-text-right">Notify me about policy updates</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <!--    FOOTER FRAGMENT    -->
+        <div th:replace="~{fragments/footer}"></div>
+    </footer>
+</body>
+</html>

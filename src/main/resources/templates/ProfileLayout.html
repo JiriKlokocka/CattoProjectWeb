@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th= "http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/MainLayout.css">
+    <link rel="stylesheet" href="/ProfileLayout.css">
+    
+    <title>Catto - Profile</title>
+    <!--Font Sour Gummy, Open Sans from Google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Prociono&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Prociono&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!--Fa Fa icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--favicon-->
+    <link rel="icon" type="image/x-icon" href="/images/FAVICON.png">
+    <!-- <a href="https://www.flaticon.com/free-icons/paw" title="paw icons"></a> -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <script src="http://localhost:35730/livereload.js"></script>
+</head>
+<body>
+<header>
+    <!--    HEADER FRAGMENT    -->
+    <div th:replace="~{fragments/header}"></div>
+</header>
+
+<main>
+        <div class="container col-md-6">
+            <div class="main-container">
+                <div class="profileCard">
+                    <div class="profileImage"><img alt="___" src="images/erda-estremera-BGLdeLFuGfs-unsplash.jpg"></div>
+                    <a class="profileButton"style="order: -1;" href="/editprofile">Edit profile</a>
+                    <a class="profileButton" href="/logout">Log out</a>
+                </div>
+
+                <div class="bio">
+                    <div class="bio-item">
+                        <span class="bio-item-label">Nickname: </span>
+                        <span th:text="${user.username}" class=""></span>
+                    </div>
+                    <div class="bio-item">
+                        <span class="bio-item-label">Name: </span>
+                        <span th:text="|${user.getFname()} ${user.getLname()}|" class=""></span>
+                    </div>
+                    <div class="bio-item">
+                        <span class="bio-item-label">E-mail: </span>
+                        <span th:text="${user.getEmail()}" class=""></span>
+                    </div>
+                    <div class="bio-item">
+                        <span class="bio-item-label">Phone: </span>
+                        <span th:text="${user.getPhonenum()}" class=""></span>
+                    </div>
+
+                    <div class="bio-item">
+                        <span class="bio-item-label">Your ID: </span>
+                        <span th:text="${user.getId()}" class=""></span>
+                    </div>
+
+                </div>
+
+                <div class="profileMenu">
+                    <div>Saved</div>
+                    <div th:text="|My shared (${posts.size()})|"></div>
+                </div>
+                <div th:each="post : ${posts}" class="post-profile">
+                    <img class="post-image-profile" alt="Post image" th:src="${post.media.getFilepath()}" th:alt="${post.media.getTitle()}">
+                    <div class="post-content-profile">
+                        <a class="post-content-user" href="">
+                        <span class="post-user-avatar">
+                            <i class="fa fa-user-circle-o" ></i>
+                        </span>
+                            <span th:text="${post.user.username}" class=""></span>
+                        </a>
+                        <a class="post-content-user" th:href="|/editpost?postId=${post.Id}|" th:if="${user.getUsername() == post.user.username}">
+                            <span class="post-user-avatar">
+                                <i class="fa fa-edit" ></i>
+                            </span>
+                            <span>edit post</span>
+                        </a>
+                        <br>
+                        <div class="text-field">
+                        <span th:text="${post.text}"></span>
+                            <div class="paws">
+                                <img class="paw" alt="__" src="/images/paw.png">
+                                <span class="paw-count" th:text="${post.likecount}"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+<footer>
+    <!--    FOOTER FRAGMENT    -->
+    <div th:replace="~{fragments/footer}"></div>
+</footer>
+  
+</body>
+</html>

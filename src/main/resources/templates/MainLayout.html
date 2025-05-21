@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th= "http://www.thymeleaf.org" lang="en"  th:fragment="layout(content)">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="MainLayout.css">
+    <title>Catto Home Page</title>
+     <!--Font Sour Gummy-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Prociono&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Prociono&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!--favicon-->
+    <link rel="icon" type="image/x-icon" href="/images/FAVICON.png">
+    <!--Fa Fa icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <script src="http://localhost:35730/livereload.js"></script>
+</head>
+
+<body>
+    <header>
+        <!--    HEADER FRAGMENT    -->
+        <div th:replace="~{fragments/header}"></div>
+    </header>
+
+
+    <div class="menu-left-container">
+        <div class="menu-left">
+                <input class="menu-item-format searchBar" type="text" placeholder="&#xf002;" aria-placeholder="Search"/>
+                <div class="menu-item menu-item-format">Catnado</div>
+                <div class="menu-item menu-item-format">Zoomies</div>
+                <div class="menu-item menu-item-format">Fashion</div>
+                <div class="menu-item menu-item-format">Toys</div>
+                <div class="menu-item menu-item-format">Wild cats</div>
+                <a href="/logout" class="menu-item menu-item-format">Log out</a>
+        </div>
+    </div>
+
+    <main class="main">
+<!--        <div style="margin-top: 100px;">-->
+<!--            <span th:text="${user.username}" class="" ></span>-->
+<!--            <span>dddd<span th:text="${user.getId()}" class=""></span></span>-->
+<!--            <span th:text="${user.getEmail()}" class=""></span>-->
+<!--        </div>-->
+        <div class="masonry">
+            <div th:each="post : ${posts}" class="post">
+                <div class="post-date">
+                    <span th:text="${#dates.format(post.getSharedate(), 'dd. MMMM yyyy')}"></span>
+                </div>
+                <img th:if="${post.media != null}" class="post-image" alt="Post image" th:src="${post.media.getFilepath()}" th:alt="${post.media.getTitle()}">
+                <div class="post-content">
+                    <a class="post-content-user" href="">
+                        <span class="post-user-avatar">
+                            <i class="fa fa-user-circle-o" ></i>
+                        </span>
+                        <span th:text="${post.user.username}" class=""></span>
+                    </a>
+                    <a th:if="${user.getUsername() == post.user.username}" th:href="|/editpost?postId=${post.id}|" class="post-content-user" >
+                        <span class="post-user-avatar">
+                            <i class="fa fa-edit" ></i>
+                        </span>
+                        <span>edit post</span>
+                    </a>
+                    <br>
+                    <span th:text="${post.text}"></span>
+                    <div class="paws">
+                        <img class="paw" alt="__" src="/images/paw.png">
+                        <span class="paw-count" th:text="${post.user.id}"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    
+
+    </main>
+
+    <!-- <div class="postCreate">
+            <div class="createForm">
+                <form>
+                    <div>
+                        <h1>Add new post</h1>
+                    </div>
+
+                    <label for="myfile">Select a file:</label>
+                    <input type="file" id="myfile" name="myfile">
+
+                    <label for="posttext">Enter text:</label>
+                    <textarea class="textarea" id="posttext" name="posttext" rows="5"
+                    cols="50" maxlength="250">Describe your post! Max 250 letters!</textarea>
+                </form>
+            </div>
+        </div> -->
+    <footer>
+        <!--    FOOTER FRAGMENT    -->
+        <div th:replace="~{fragments/footer}"></div>
+    </footer>
+    
+</body>
+</html>

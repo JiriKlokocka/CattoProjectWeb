@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns:th= "http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .header-topbar {
+            position: fixed;
+            height: 60px;
+            top:0;
+            left: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            align-content: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 0 20px 0 20px;
+            color:#ffffff;
+            background: linear-gradient(180deg, rgb(255, 238, 176) 0%, rgb(255, 173, 156) 100%);
+            /* filter: drop-shadow(0px 2px 4px #000000); */
+            box-shadow: #00000044 4px 4px 6px;
+            border-bottom-right-radius: 24px;
+            border-bottom-left-radius: 24px;
+            z-index: 2;
+            opacity: 0.97;
+        }
+
+        .logo  {
+            text-decoration: none !important;
+            background: none !important;
+
+            cursor: pointer;
+            margin: 0.1rem;
+            padding: 0.1rem;
+            border: none;
+            text-align: center;
+            color: #ffffff;
+            filter: drop-shadow(0px 2px 1px #000000);
+            font-family: "Sour Gummy", sans-serif;
+            font-size: 35px;
+            font-weight: 400;
+            align-self: center;
+        }
+        .logo:hover {
+            color: #ffffff;
+            filter: drop-shadow(0px 2px 2px #000000);
+        }
+
+
+        .btn-top {
+            display: inline-flex;
+            align-items: center;
+            justify-content:  center;
+            gap: 5px;
+
+            padding: 2px 10px 2px 10px;
+            color: white;
+            border-radius: 20px;
+            text-decoration: none;
+            font-family: "Sour Gummy", sans-serif;
+            font-size: 14pt;
+            font-weight: 550;
+            transition: 500ms;
+            text-shadow: 0 2px #000000;
+            filter: drop-shadow(0px 2px 1px #00000044);
+            background: linear-gradient(180deg, rgba(255,150,150,1) 0%, rgba(255,200,150,1) 100%);
+            max-width: 120px;
+        }
+
+        .btn-top:hover {
+            filter:drop-shadow(0px 3px 3px #00000044);
+            transition: 500ms;
+            background: radial-gradient(circle, rgba(255,200,150,1) 0%, rgba(255,150,150,1) 100%);
+            color: white;
+        }
+
+        .topbar-spacer {
+            display: flex;
+            flex-grow: 1;
+        }
+
+        /* ================================ 420 ========================================= */
+        @media screen and (max-width: 420px) {
+
+            .topbar-spacer {
+                display: none;
+            }
+            .logo-box-smalllview {
+                display: inline;
+            }
+            .logo-box-largeview {
+                display: none;
+            }
+            .logo {
+                font-size: 26px;
+            }
+
+            .btn-top {
+                font-size: 12px;
+                padding: 0.2rem;
+            }
+        }
+
+        /* ================================ 700 ========================================= */
+        @media screen and (max-width: 700px) {
+
+            .topbar-spacer {
+                display: none;
+            }
+            .logo-box-smalllview {
+                display: inline;
+            }
+            .logo-box-largeview {
+                display: none;
+            }
+
+
+        }
+
+        /* ================================ 700-1200 ========================================= */
+        @media screen and ( max-width: 1200px) and (min-width:700px) {
+
+            .topbar-spacer {
+                display: none;
+            }
+            .logo-box-smalllview {
+                display: inline;
+            }
+            .logo-box-largeview {
+                display: none;
+            }
+
+
+        }
+
+        /* ================================ 1200 ========================================= */
+        @media screen and (min-width: 1200px) {
+
+            .logo-box-largeview {
+                display: inline;
+            }
+            .logo-box-smalllview {
+                display: none;
+            }
+
+        }
+
+    </style>
+</head>
+<body>
+<div th:fragment="header">
+    <div class="header-topbar">
+        <div class="logo-box-largeview">
+            <a class="logo" href="/">Catto!</a>
+        </div>
+
+        <div class="topbar-spacer"></div>
+
+        <a th:if="${servletPath != '/profile'}"  class="btn-top" href="/profile">
+            <span>Profile</span>
+            <span class="fa fa-user-circle"></span>
+        </a>
+        <span th:if="${servletPath == '/'}">
+            <div class="logo-box-smalllview">
+                <a class="logo" href="/">Catto!</a>
+            </div>
+        </span>
+        <a th:if="${servletPath != '/settings' && servletPath != '/editprofile'}" class="btn-top" href="/settings">
+            <span>Options</span>
+            <span class="fa fa-cog"></span>
+            <!-- &#xf013; -->
+        </a>
+        <span th:if="${servletPath != '/'}">
+            <div class="logo-box-smalllview">
+                <a class="logo" href="/">Catto!</a>
+            </div>
+        </span>
+        <a th:unless="${servletPath == '/'}" class="btn-top" href="/">
+            <span>Home</span>
+            <span class="fa fa-home"></span>
+            <!-- &#xf013; -->
+        </a>
+    </div></div>
+</body>
+</html>

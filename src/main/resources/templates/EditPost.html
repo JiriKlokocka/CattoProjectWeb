@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th= "http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/MainLayout.css">
+    <link rel="stylesheet" href="/ProfileLayout.css">
+    <link rel="stylesheet" href="/forms.css">
+    
+    <title>Catto - Edit post</title>
+    <!--Font Sour Gummy, Open Sans from Google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Prociono&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Prociono&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!--Fa Fa icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--favicon-->
+    <link rel="icon" type="image/x-icon" href="FAVICON.png">
+    <!-- <a href="https://www.flaticon.com/free-icons/paw" title="paw icons"></a> -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <script src="http://localhost:35730/livereload.js"></script>
+</head>
+<body>
+<header>
+    <!--    HEADER FRAGMENT    -->
+    <div th:replace="~{fragments/header}"></div>
+</header>
+    <main>
+        <div class="container col-md-6">
+            <div class="main-form-container">
+                <div class="form-container">
+                    <h1>Edit Post</h1>
+                    <form action="#" th:action="@{/updatepost}" th:object="${post}" method="POST" class="mb-2 p-0">
+                        <div class="post-media-form-container">
+                            <div th:each="image : ${media}">
+                                <img onclick="selectedImage.src=this.src;media_id.value=this.id;media_filepath.src=this.src"  class="post-media-form"  alt="Post image" th:id="${image.id}" th:src="${image.getFilepath()}" th:alt="${image.getTitle()}">
+                            </div>
+                        </div>
+                        <input type="hidden" th:field="*{id}">
+                        <label for="text" class="label-login">Post image</label>
+                        <img th:if="${post.media != null}" class="post-media-form-selected"  alt="Post image" id="selectedImage" th:src="${post.media.getFilepath()}" th:alt="${post.media.getTitle()}">
+                        <input type="hidden" th:field="*{media.id}" id="media_id">
+                        <input type="hidden" th:field="*{media.filepath}" id="media_filepath">
+                        <input type="hidden" th:field="*{user.id}">
+                        <input type="hidden" th:field="*{likecount}">
+                        <label for="text" class="label-login">Post text *</label>
+                        <textarea class="input-login input-login-textarea" th:field="*{text}" id="text" placeholder="Post text" th:required="true" rows="2" spellcheck="false">
+                        </textarea>
+                        <button type="submit" class="login-button">
+                            Save
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+   <footer>
+       <!--    FOOTER FRAGMENT    -->
+       <div th:replace="~{fragments/footer}"></div>
+   </footer>
+  
+</body>
+</html>
