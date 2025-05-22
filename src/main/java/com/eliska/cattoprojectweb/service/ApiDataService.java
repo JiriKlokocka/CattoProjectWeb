@@ -64,6 +64,7 @@ public class ApiDataService {
     }
 
 
+
     //Zjisti jestli uzivatel v databazi existuje nastavi loggedUser
     public UserEntity getUserByUsernameAndSetLoggedUser(String username) {
         ResponseEntity<UserEntity> response = restTemplate.getForEntity(apiPath + "/users/getbyusername/" + username, UserEntity.class);
